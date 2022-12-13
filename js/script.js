@@ -58,29 +58,25 @@ const quotes = [
 ***/
 
 /**
-* Generate a quote and return the updated message
-* @param {array} arr - input array to search
-* @param {number} num iput index of array to locate an object within the array
-* @return {message} message to be printed in HTML tags
+* Generate a random number, use that to extract a random quote from the quotes array and return a new object
+* @return {randomQuote} the randomly selected quote to print on the screen
 */
 let getRandomQuote = () => {
   //initialize variables
-  let date;
-  let cit;
   let randomQuote;
   //random number = i
   let i = Math.floor( Math.random() * quotes.length );
 
-  // Extract information from random object in quotes array and begin building random quote obj
-  let sentence = `${quotes[i].quote}`;
-  let src = `${quotes[i].source}`;
+  //Extract information from random object in quotes array and begin building randomQuote obj
+  let sentence = quotes[i].quote;
+  let src = quotes[i].source;
 
   randomQuote = {
     quote: sentence,
     source: src
   };
 
-  // Conditional
+  //Conditional to add citation or year if available
   if ( quotes[i].year !== undefined ) {
     randomQuote.year = quotes[i].year;
   }
@@ -88,20 +84,37 @@ let getRandomQuote = () => {
     randomQuote.citation = quotes[i].citation;
   }
 
-  console.log(randomQuote);
+  // console.log(i, randomQuote);
+  return randomQuote;
 }
-
-getRandomQuote();
 
 /***
  * `printQuote` function
 ***/
+function printQuote() {
+  //Inserting randomQuote object properties into a new HTML variable
+  let quoteToShow = getRandomQuote();
+  let html = `
+    <p class="quote">${quoteToShow.quote}</p>
+    <p class="source">${quoteToShow.source}
+  `;
 
+  if ( quoteToShow.citation !== undefined ) {
+    html += `<span class="citation">${quoteToShow.citation}</span>`;
+  }
+  if ( quoteToShow.year !== undefined ) {
+    html += `<span class="year">${quoteToShow.year}</span>`;
+  }
 
+  html += `</p>`;
+
+  return html;
+}
+
+document.getElementById('quote-box').innerHTML = printQuote(); 
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
-
-// document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
