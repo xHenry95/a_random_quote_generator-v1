@@ -7,6 +7,11 @@ project 1 - A Random Quote Generator
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
+/* 
+I am aiming for Exceeds Expectations.
+I hope you enjoy reading my code :) Thank you for your time!
+Henry
+*/
 /*** 
  * `quotes` array 
 ***/
@@ -65,7 +70,7 @@ let getRandomQuote = () => {
 
   //initialize variables
   let randomQuote;
-  
+
   //random number = i
   let i = Math.floor( Math.random() * quotes.length );
 
