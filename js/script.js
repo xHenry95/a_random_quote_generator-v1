@@ -64,25 +64,33 @@ const quotes = [
 * @return {message} message to be printed in HTML tags
 */
 let getRandomQuote = () => {
+  //initialize variables
+  let date;
+  let cit;
+  let randomQuote;
   //random number = i
-   let i = Math.floor( Math.random() * quotes.length );
+  let i = Math.floor( Math.random() * quotes.length );
 
-  // Extract information from random object in quotes array
+  // Extract information from random object in quotes array and begin building random quote obj
   let sentence = `${quotes[i].quote}`;
   let src = `${quotes[i].source}`;
-  let date = 0;
-  let cit = "";
+
+  randomQuote = {
+    quote: sentence,
+    source: src
+  };
+
   // Conditional
   if ( quotes[i].year !== undefined ) {
-    date = quotes[i].year;
+    randomQuote.year = quotes[i].year;
   }
-  if ( quotes[i].citation !== "" ) {
-    cit = quotes[i].citation;
+  if ( quotes[i].citation !== undefined ) {
+    randomQuote.citation = quotes[i].citation;
   }
 
-  console.log(`${sentence}, ${src}, ${date}, ${cit}`);
-
+  console.log(randomQuote);
 }
+
 getRandomQuote();
 
 /***
