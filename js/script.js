@@ -62,8 +62,10 @@ const quotes = [
 * @return {randomQuote} the randomly selected quote to print on the screen
 */
 let getRandomQuote = () => {
+
   //initialize variables
   let randomQuote;
+  
   //random number = i
   let i = Math.floor( Math.random() * quotes.length );
 
