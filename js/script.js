@@ -68,12 +68,10 @@ let getRandomQuote = () => {
   let i = Math.floor( Math.random() * quotes.length );
 
   //Extract information from random object in quotes array and begin building randomQuote obj
-  let sentence = quotes[i].quote;
-  let src = quotes[i].source;
-
   randomQuote = {
-    quote: sentence,
-    source: src
+    quote: quotes[i].quote,
+    source: quotes[i].source,
+    tag: quotes[i].tag
   };
 
   //Conditional to add citation or year if available
@@ -105,16 +103,37 @@ function printQuote() {
   if ( quoteToShow.year !== undefined ) {
     html += `<span class="year">${quoteToShow.year}</span>`;
   }
+  if ( quoteToShow.tag !== undefined ) {
+    html += `<span class="year">  ${quoteToShow.tag}</span>`;
+  }
 
   html += `</p>`;
 
-  return html;
+  document.getElementById('quote-box').innerHTML = html; 
 }
 
-document.getElementById('quote-box').innerHTML = printQuote(); 
+printQuote();
+
+// Generate random background color
+function randomRGB() {
+  const red = Math.floor( Math.random() * 255 );
+  const green = Math.floor( Math.random() * 255 );
+  const blue = Math.floor( Math.random() * 255 );
+
+  // set background color
+  document.body.style.background = `rgb(${red}, ${green}, ${blue})`;
+}
+
+// Automatic quote generation with timing interval
+setInterval(printQuote, 15000);
+setInterval(randomRGB, 15000);
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+// Copying code above to action background color change on click
+document.getElementById('load-quote').addEventListener("click", randomRGB, false);
+
